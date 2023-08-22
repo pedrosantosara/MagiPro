@@ -1,8 +1,13 @@
-import  {routes} from './server/Routes';
+import { router } from './server/Routes';
+import Express from 'express';
 
-const PORT = 8070
 
+const app = Express();
+const PORT = 8070;
+app.use(Express.json())
+app.use(router);
 
-routes.listen(PORT,()=>{
+app.listen(PORT, () => {
     console.log(`Servidor Rodando na porta ${PORT}`)
 });
+

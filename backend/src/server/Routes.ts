@@ -1,11 +1,9 @@
-import Express from "express";
+import { Router } from "express";
+import { createUser } from "../controllers/studentController";
 
-const routes = Express();
+const router = Router();
 
-routes.get('/', (req,res)=>{
-
-    return res.send('Opa')
-})
+router.post("/register", createUser);
 
 
-export {routes};
+export { router };
