@@ -9,17 +9,17 @@ import { createToken} from "../helpers/jwt";
 const registerUser = async (req: Request, res: Response) => {
     const { name, email, password, confirmPassword, role } = req.body;
 
-    const errors = await isValid({ name, email, password, confirmPassword });
-    if (errors.length > 0) return res.status(401).json({ errors });
+    const errors = await isValid({ name, email, password, confirmPassword,role });
+    if (errors.length > 0) return res.status(400).json({ errors });
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassowrd = await bcrypt.hash(password, salt);
 
     const roleToUpperCase = role.toUpperCase();
-
     const user = await prisma.user.create({
         data: { name, email, password: hashedPassowrd, role: roleToUpperCase },
     });
+
     return res.json({ message: "Usuario Criado Com Sucesso" });
 };
 
