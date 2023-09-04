@@ -4,7 +4,7 @@ import { verifyToken, Payload } from "../helpers/jwt";
 import { Request as ExpressRequest } from "express";
 
 interface ExtendedRequest extends ExpressRequest {
-    user?: Payload & { user?: any };
+    user?: Payload & { user?: any  };
 }
 
 const isUserLoggedIn = async (req: ExtendedRequest, res: Response, next: NextFunction) => {
