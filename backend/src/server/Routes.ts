@@ -2,7 +2,7 @@ import { Router,Request,Response } from "express";
 import { registerUser, loginUser } from "../controllers/authController";
 import { createProjects } from "../controllers/projectsController";
 import { isUserLoggedIn } from "../middlewares/authJWT";
-import { getAllProjects, getPerfil, getProject } from "../controllers/userController";
+import { getAllProjects, getPerfil, getProject, updatePerfil } from "../controllers/userController";
 
 const router = Router();
 
@@ -15,6 +15,7 @@ router.get("/perfil/:userId",getPerfil);
 //rotas necessarias ter autenticação
 router.use(isUserLoggedIn) // middleware login 
 
+router.put("/perfil/:userId", updatePerfil)
 router.post("/projects",createProjects);
 
 
