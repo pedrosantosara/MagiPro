@@ -11,13 +11,34 @@ const IsTeacher = (user?: { role: string }) => {
     }
 }
 
-const createProjects = (req:ExtendedRequest, res:Response) =>{
-    
+const createProjects = async (req: ExtendedRequest, res: Response) => {
+    const userId = req.user?.userId
+    console.log(req.user?.role)
+    IsTeacher(req.user)
+    const { title,
+        description,
+        objectives,
+        timeline,
+        studentCount,
+        resources,
+        interestArea } = req.body
+
+    const project = await prisma.project.create({
+        data: {
+            title,
+            description,
+            objectives,
+            timeline,
+            studentCount,
+            resources,
+            interestArea,
+            userId
+        }
+    })
+    res.status(201).json({ "Mensagem": "Projeto criado com sucesso." })
+
 }
 
-
-
-
-export {
-    createProjects,
-}
+    export {
+        createProjects,
+    }

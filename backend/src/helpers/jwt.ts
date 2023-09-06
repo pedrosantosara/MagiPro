@@ -8,7 +8,7 @@ import { Request as ExpressRequest } from "express";
 dotenv.config();
 const jwtPassword = process.env.PASSWORD_JWT as string;
 
-if (!jwtPassword) throw new ApiError('Error interno do servidor', 500);
+if(!jwtPassword) throw new ApiError('Error interno do servidor', 500);
 
 interface Payload {
     userId: string;
